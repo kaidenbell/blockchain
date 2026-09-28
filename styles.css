@@ -457,15 +457,7 @@ blockquote {
 .hero .stack-title,
 .hero .stack-support,
 .hero .stats dt {
-  font-weight: 300;
-}
-
-.hero .stack-title {
-  letter-spacing: -0.03em;
-}
-
-.hero .stack-support {
-  color: color-mix(in oklab, var(--fg) 42%, transparent);
+  font-weight: 400;
 }
 
 .hero-actions {
