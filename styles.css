@@ -20,6 +20,7 @@
   --accent-hover: color-mix(in oklab, var(--accent) 75%, transparent);
 
   --font: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
 
   --g: 0.625rem;
   --v: 1.4rem;
@@ -67,6 +68,7 @@ html {
   *::before,
   *::after {
     transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -559,20 +561,49 @@ blockquote {
   }
 }
 
-/* Markets */
+/* Moving market line — Newsreader italic, same as acend.fi */
 
-.markets {
-  padding: 0.4rem 0 2.8rem;
+.marquee {
+  padding: 1.25rem 0 2.4rem;
+  overflow: hidden;
 }
 
-.markets-row {
+.marquee__mask {
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.marquee__track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.45rem 1.75rem;
-  color: var(--text-sec);
-  font-size: var(--text-sm);
-  letter-spacing: var(--track-sm);
+  width: max-content;
+  animation: marquee 56s linear infinite;
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  padding: 0 28px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.2rem + 4vw, 3.75rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: color-mix(in oklab, var(--fg) 18%, transparent);
+  font-optical-sizing: auto;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (hover: hover) {
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
 }
 
 /* Sections */
