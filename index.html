@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f7f4" />
+    <meta
+      name="description"
+      content="Acend is a Solana trading platform that is simple to use and built for better decisions. Live data, stronger tools, nothing extra."
+    />
+    <meta property="og:title" content="Acend | Own the upside" />
+    <meta
+      property="og:description"
+      content="A simple, powerful way to trade on Solana. Clear data and better tools, in a platform you can actually use."
+    />
+    <meta property="og:type" content="website" />
+    <title>Acend | Own the upside</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="header">
+      <div class="container header-bar">
+        <a class="logo" href="#top" aria-label="Acend home">
+          <svg class="wordmark" viewBox="0 0 176 50" aria-hidden="true">
+            <g fill="currentColor" fill-rule="nonzero">
+              <g transform="translate(2 14)">
+                <path d="M34 17a17 17 0 1 1-34 0 17 17 0 1 1 34 0zM28.5 17a11.5 11.5 0 1 0-23 0 11.5 11.5 0 1 0 23 0zM30.5 0h5.5v34h-5.5z" />
+              </g>
+              <g transform="translate(39 14)">
+                <path d="M32 9A17 17 0 0 0 17 0A17 17 0 0 0 0 17A17 17 0 0 0 17 34A17 17 0 0 0 32 25L25.26 25A11.5 11.5 0 0 1 17 28.5A11.5 11.5 0 0 1 5.5 17A11.5 11.5 0 0 1 17 5.5A11.5 11.5 0 0 1 25.26 9L32 9Z" />
+              </g>
+              <g transform="translate(70 14)">
+                <path fill-rule="evenodd" d="M32 25A17 17 0 1 1 33.776 14.25L33.776 19.75H5.833A11.5 11.5 0 0 0 17 28.5A11.5 11.5 0 0 0 25.26 25L32 25ZM5.833 14.25A11.5 11.5 0 0 1 17 5.5A11.5 11.5 0 0 1 28.167 14.25Z" />
+              </g>
+              <g transform="translate(105 14)">
+                <path d="M0 34V16A16 16 0 0 1 32 16V34H26V16A10 10 0 0 0 6 16V34H0Z" />
+              </g>
+              <g transform="translate(138 14)">
+                <path d="M34 17a17 17 0 1 1-34 0 17 17 0 1 1 34 0zM28.5 17a11.5 11.5 0 1 0-23 0 11.5 11.5 0 1 0 23 0zM30.5-13h5.5v47h-5.5z" />
+              </g>
+            </g>
+          </svg>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#platform">Platform</a>
+          <a href="#products">Trade</a>
+          <a href="#advantage">Advantage</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="quiet" href="https://acend-production.up.railway.app" data-app>Log in</a>
+          <a class="btn" href="https://acend-production.up.railway.app" data-app>Open an account</a>
+        </div>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <nav class="container" aria-label="Mobile">
+        <a href="#platform">Platform</a>
+        <a href="#products">Trade</a>
+        <a href="#advantage">Advantage</a>
+        <div class="mobile-cta">
+          <a class="btn btn--secondary" href="https://acend-production.up.railway.app" data-app>Log in</a>
+          <a class="btn" href="https://acend-production.up.railway.app" data-app>Open an account</a>
+        </div>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container">
+          <h1 class="type-display">Own the upside.</h1>
+          <p class="lede type-base sec pretty">A smarter, simpler way to trade on Solana.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://acend-production.up.railway.app" data-app>
+              Open an account <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--secondary" href="#platform">
+              How it works <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <figure class="stage">
+            <img
+              class="stage-wallpaper"
+              src="./images/hero.jpg"
+              alt=""
+              width="1024"
+              height="682"
+            />
+            <img
+              class="stage-product"
+              src="./images/platform-laptop.jpg"
+              alt="Acend trading desk on a laptop, with markets, a chart, activity, and an order ticket"
+              width="1024"
+              height="768"
+            />
+          </figure>
+
+          <dl class="stats">
+            <div>
+              <dt>$2B+</dt>
+              <dd>External liquidity</dd>
+            </div>
+            <div>
+              <dt>Instant</dt>
+              <dd>Typical fill</dd>
+            </div>
+            <div>
+              <dt class="stats-solana">
+                <svg class="solana-mark" viewBox="0 0 398 312" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="sol-a" x1="360.9" y1="351.5" x2="141.2" y2="-69.3" gradientTransform="matrix(1 0 0 -1 0 314)" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stop-color="#00ffa3" />
+                      <stop offset="1" stop-color="#dc1fff" />
+                    </linearGradient>
+                    <linearGradient id="sol-b" x1="264.8" y1="401.6" x2="45.2" y2="-19.1" gradientTransform="matrix(1 0 0 -1 0 314)" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stop-color="#00ffa3" />
+                      <stop offset="1" stop-color="#dc1fff" />
+                    </linearGradient>
+                    <linearGradient id="sol-c" x1="312.5" y1="376.7" x2="92.9" y2="-44.1" gradientTransform="matrix(1 0 0 -1 0 314)" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stop-color="#00ffa3" />
+                      <stop offset="1" stop-color="#dc1fff" />
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#sol-b)" d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z" />
+                  <path fill="url(#sol-c)" d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z" />
+                  <path fill="url(#sol-a)" d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z" />
+                </svg>
+                Solana
+              </dt>
+              <dd>Blockchain</dd>
+            </div>
+            <div>
+              <dt>100%</dt>
+              <dd>Self-custody</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="markets" id="markets" aria-label="Markets">
+        <div class="container markets-row">
+          <span>BTC</span>
+          <span>Yield</span>
+          <span>Tokens</span>
+          <span>Cash</span>
+          <span>Stocks</span>
+          <span>USDC</span>
+          <span>ETFs</span>
+          <span>Crypto</span>
+          <span>SOL</span>
+          <span>Portfolio</span>
+        </div>
+      </section>
+
+      <section class="section" id="platform">
+        <div class="container">
+          <div class="intro intro--split">
+            <h2 class="type-lg">Made to outperform.</h2>
+            <p class="type-base sec pretty">
+              A Solana trading platform that is easy to pick up and serious where it counts. Live data, clearer tools, and a better view of the market.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--follow" id="products">
+        <div class="container">
+          <div class="intro">
+            <h2 class="type-lg">Built to go further.</h2>
+            <p class="type-base sec pretty">
+              The data and tools to trade with more conviction, in a product that stays easy to use.
+            </p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <figure class="card-media">
+                <img
+                  src="./images/invest-intention.jpg"
+                  alt="Acend markets list with crypto, equities, a chart, and activity"
+                  width="1024"
+                  height="768"
+                />
+              </figure>
+              <div class="card-body">
+                <h3 class="type-md">Invest with intention</h3>
+                <p class="type-base sec pretty">
+                  Stocks, crypto, ETFs, pre-IPOs, memecoins, and yield. Trade them all in one platform, around the clock.
+                </p>
+                <a class="link-accent" href="#markets">See what you can trade <span class="arrow" aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="card-media">
+                <img
+                  src="./images/see-what-matters.jpg"
+                  alt="Acend order ticket with market, limit, and stock tracking"
+                  width="1024"
+                  height="768"
+                />
+              </figure>
+              <div class="card-body">
+                <h3 class="type-md">Trade with better tools</h3>
+                <p class="type-base sec pretty">
+                  Market, limit, and stock tracking in one ticket. Serious tools, presented clearly.
+                </p>
+                <a class="link-accent" href="#platform">Explore the platform <span class="arrow" aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="card">
+              <figure class="card-media">
+                <img
+                  src="./images/easy-layout.jpg"
+                  alt="Acend desk with a draggable markets panel over the chart and order ticket"
+                  width="1024"
+                  height="768"
+                />
+              </figure>
+              <div class="card-body">
+                <h3 class="type-md">Arrange it your way</h3>
+                <p class="type-base sec pretty">
+                  Drag and drop every panel to build a layout that fits how you trade. Make it yours, then get to work.
+                </p>
+                <a class="link-accent" href="#platform">Explore the platform <span class="arrow" aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement">
+        <div class="container">
+          <h2 class="type-display">Trade with more information.</h2>
+          <p class="sec">Keep the experience simple.</p>
+        </div>
+      </section>
+
+      <section class="section" id="advantage">
+        <div class="container">
+          <div class="intro">
+            <h2 class="type-lg">Built for every size.</h2>
+            <p class="type-base sec pretty">
+              Whether you are just getting started or trading in size, you get the same experience.
+            </p>
+          </div>
+
+          <div class="scale">
+            <article>
+              <div class="scale-stat">
+                <p class="figure">$1</p>
+                <svg class="coins" viewBox="0 0 40 32" aria-hidden="true">
+                  <g stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+                    <g transform="translate(24 11)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                    <g transform="translate(15 18)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <h3 class="type-md">Get started</h3>
+              <p class="type-base sec pretty">A low minimum so you can learn the desk before you put on real size.</p>
+            </article>
+            <article>
+              <div class="scale-stat">
+                <p class="figure">$8M+</p>
+                <svg class="coins coins--lg" viewBox="0 0 46 44" aria-hidden="true">
+                  <g stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+                    <g transform="translate(28 10)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                    <g transform="translate(18 16)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                    <g transform="translate(30 22)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                    <g transform="translate(16 28)">
+                      <path class="coin-body" d="M-10 0v6a10 4 0 0 0 20 0V0a10 4 0 0 1-20 0z" />
+                      <ellipse class="coin-face" cx="0" cy="0" rx="10" ry="4" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <h3 class="type-md">Trade at scale</h3>
+              <p class="type-base sec pretty">Capacity for larger orders, on the same ticket you already know.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="close" id="get-started">
+        <div class="container">
+          <h2 class="type-display">Trade smarter.</h2>
+          <p class="type-base sec pretty">
+            Trade on Solana with a platform that is both simple and seriously capable.
+          </p>
+          <a class="btn" href="https://acend-production.up.railway.app" data-app>
+            Open an account <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <p>A simple, powerful way to trade on Solana.</p>
+          </div>
+          <div>
+            <h3>Platform</h3>
+            <a href="#platform">Platform</a>
+            <a href="#products">Trade</a>
+            <a href="#advantage">Advantage</a>
+          </div>
+          <div>
+            <h3>Account</h3>
+            <a href="https://acend-production.up.railway.app" data-app>Log in</a>
+            <a href="https://acend-production.up.railway.app" data-app>Open an account</a>
+          </div>
+          <div>
+            <h3>Markets</h3>
+            <a href="#products">Stocks</a>
+            <a href="#products">Crypto</a>
+            <a href="#products">ETFs</a>
+          </div>
+        </div>
+
+        <a class="footer-mark" href="#top" aria-label="Acend home">
+          <svg class="wordmark" viewBox="0 0 176 50" aria-hidden="true">
+            <g fill="currentColor" fill-rule="nonzero">
+              <g transform="translate(2 14)">
+                <path d="M34 17a17 17 0 1 1-34 0 17 17 0 1 1 34 0zM28.5 17a11.5 11.5 0 1 0-23 0 11.5 11.5 0 1 0 23 0zM30.5 0h5.5v34h-5.5z" />
+              </g>
+              <g transform="translate(39 14)">
+                <path d="M32 9A17 17 0 0 0 17 0A17 17 0 0 0 0 17A17 17 0 0 0 17 34A17 17 0 0 0 32 25L25.26 25A11.5 11.5 0 0 1 17 28.5A11.5 11.5 0 0 1 5.5 17A11.5 11.5 0 0 1 17 5.5A11.5 11.5 0 0 1 25.26 9L32 9Z" />
+              </g>
+              <g transform="translate(70 14)">
+                <path fill-rule="evenodd" d="M32 25A17 17 0 1 1 33.776 14.25L33.776 19.75H5.833A11.5 11.5 0 0 0 17 28.5A11.5 11.5 0 0 0 25.26 25L32 25ZM5.833 14.25A11.5 11.5 0 0 1 17 5.5A11.5 11.5 0 0 1 28.167 14.25Z" />
+              </g>
+              <g transform="translate(105 14)">
+                <path d="M0 34V16A16 16 0 0 1 32 16V34H26V16A10 10 0 0 0 6 16V34H0Z" />
+              </g>
+              <g transform="translate(138 14)">
+                <path d="M34 17a17 17 0 1 1-34 0 17 17 0 1 1 34 0zM28.5 17a11.5 11.5 0 1 0-23 0 11.5 11.5 0 1 0 23 0zM30.5-13h5.5v47h-5.5z" />
+              </g>
+            </g>
+          </svg>
+        </a>
+
+        <div class="footer-bottom">
+          <p>Trading involves risk. Acend does not provide investment advice.</p>
+          <p>© 2026 Acend</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="beta" id="beta-gate" hidden role="dialog" aria-modal="true" aria-labelledby="beta-gate-title">
+      <div class="beta-backdrop" data-beta-close></div>
+      <div class="beta-panel">
+        <h2 id="beta-gate-title" class="type-lg">Currently in beta.</h2>
+        <p class="type-base sec">We will be opening soon.</p>
+        <button type="button" class="btn" data-beta-close>Go back</button>
+      </div>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
