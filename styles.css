@@ -558,6 +558,18 @@ blockquote {
   object-position: center;
 }
 
+@media (min-width: 900px) {
+  .stage {
+    width: min(100% - 8rem, 920px);
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .stage img {
+    object-position: center 62%;
+  }
+}
+
 .platform {
   display: flex;
   flex-direction: column;
