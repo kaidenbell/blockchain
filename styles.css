@@ -560,7 +560,8 @@ blockquote {
 
 @media (min-width: 900px) {
   .stage {
-    width: 100%;
+    width: calc(100% - 5.4rem);
+    margin-inline: auto;
     aspect-ratio: 1.7;
   }
 
