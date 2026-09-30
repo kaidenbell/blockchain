@@ -535,7 +535,7 @@ blockquote {
 
 .stage {
   position: relative;
-  margin: 2.8rem 0 0;
+  margin: 1.35rem 0 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--card-03);
@@ -649,7 +649,7 @@ blockquote {
 /* Moving market line — Newsreader italic, same as acend.fi */
 
 .marquee {
-  padding: 1.25rem 0 2.4rem;
+  padding: 1.65rem 0 0;
   overflow: hidden;
 }
 
@@ -665,9 +665,9 @@ blockquote {
 
 .marquee__item {
   flex-shrink: 0;
-  padding: 0 28px;
+  padding: 0 0.7rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 1.2rem + 4vw, 3.75rem);
+  font-size: clamp(1.15rem, 0.85rem + 0.8vw, 1.5rem);
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.03em;
