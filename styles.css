@@ -476,6 +476,10 @@ blockquote {
   margin-top: 1.85rem;
 }
 
+.hero-actions .btn {
+  font-size: 0.875rem;
+}
+
 .stack {
   max-width: 20em;
   font-size: 1.625rem;
