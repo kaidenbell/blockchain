@@ -523,6 +523,10 @@ blockquote {
 }
 
 @media (min-width: 900px) {
+  .stack-break {
+    display: none;
+  }
+
   .stack {
     font-size: 1.75rem;
   }
