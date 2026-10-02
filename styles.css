@@ -342,6 +342,14 @@ blockquote {
   gap: 0.25rem;
 }
 
+.header-actions .quiet,
+.header-actions .btn {
+  height: 22px;
+  padding: 0 0.7rem;
+  font-size: 0.8125rem;
+  line-height: 1;
+}
+
 .menu-toggle {
   position: relative;
   z-index: 60;
