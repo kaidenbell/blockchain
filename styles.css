@@ -575,45 +575,6 @@ blockquote {
   }
 }
 
-.platform {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.platform-shot {
-  margin: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  background: #111;
-  border: 1px solid var(--border);
-}
-
-.platform-shot img {
-  width: 100%;
-  height: auto;
-}
-
-@media (min-width: 900px) {
-  .platform {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.75fr);
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: center;
-  }
-
-  .platform .platform-shot {
-    order: -1;
-  }
-
-  .platform .stack--end {
-    width: auto;
-    max-width: 20em;
-    margin-left: 0;
-    justify-self: end;
-  }
-}
-
 .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -720,14 +681,6 @@ blockquote {
 
 .section {
   padding: 4.2rem 0;
-}
-
-.section--follow {
-  padding-top: 0.5rem;
-}
-
-#platform {
-  padding-bottom: 2.8rem;
 }
 
 .section .stack + .cards,
