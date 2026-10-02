@@ -696,7 +696,7 @@ blockquote {
 
 .cards {
   display: grid;
-  gap: var(--g);
+  gap: 2rem;
 }
 
 .card {
@@ -750,6 +750,7 @@ blockquote {
 @media (min-width: 900px) {
   .cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--g);
   }
 
   .card-body {
