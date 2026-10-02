@@ -541,7 +541,7 @@ blockquote {
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--card-03);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
 }
 
 .stage::after {
