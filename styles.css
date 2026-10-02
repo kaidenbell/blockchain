@@ -161,6 +161,14 @@ blockquote {
   margin-inline: auto;
 }
 
+@media (min-width: 900px) {
+  .container,
+  .marquee {
+    width: min(calc(var(--container) - 5.4rem), calc(100% - 2.5rem - 5.4rem));
+    margin-inline: auto;
+  }
+}
+
 .type-sm {
   font-size: var(--text-sm);
   line-height: 1.5;
@@ -550,8 +558,7 @@ blockquote {
 
 @media (min-width: 900px) {
   .stage {
-    width: calc(100% - 5.4rem);
-    margin-inline: auto;
+    width: 100%;
     aspect-ratio: 1.7;
   }
 
