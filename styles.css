@@ -908,6 +908,12 @@ blockquote {
   text-align: center;
 }
 
+.close .stack-title {
+  font-size: clamp(2.75rem, 1.5rem + 3vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: var(--track-2xl);
+}
+
 .close .btn {
   margin-top: 1.85rem;
 }
