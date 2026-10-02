@@ -549,9 +549,17 @@ blockquote {
   pointer-events: none;
 }
 
+.stage picture,
 .stage img {
   width: 100%;
   height: 100%;
+}
+
+.stage picture {
+  display: block;
+}
+
+.stage img {
   object-fit: cover;
   object-position: center;
 }
@@ -559,7 +567,7 @@ blockquote {
 @media (min-width: 900px) {
   .stage {
     width: 100%;
-    aspect-ratio: 1.45;
+    aspect-ratio: 1.75;
   }
 }
 
