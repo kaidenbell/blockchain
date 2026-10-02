@@ -344,9 +344,9 @@ blockquote {
 
 .header-actions .quiet,
 .header-actions .btn {
-  height: 22px;
-  padding: 0 0.7rem;
-  font-size: 0.8125rem;
+  height: 32px;
+  padding: 0 0.9rem;
+  font-size: 0.875rem;
   line-height: 1;
 }
 
