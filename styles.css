@@ -888,8 +888,9 @@ blockquote {
 /* Anywhere */
 
 .anywhere-photos {
-  display: grid;
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 2.4rem;
 }
 
@@ -900,6 +901,19 @@ blockquote {
   background: var(--card-03);
 }
 
+.anywhere-photos figure:first-child {
+  width: 86%;
+}
+
+.anywhere-photos figure:last-child {
+  position: relative;
+  z-index: 1;
+  width: 74%;
+  align-self: flex-end;
+  margin-top: -18%;
+  box-shadow: 0 0 0 0.45rem var(--bg);
+}
+
 .anywhere-photos img {
   display: block;
   width: 100%;
@@ -908,8 +922,20 @@ blockquote {
 
 @media (min-width: 900px) {
   .anywhere-photos {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .anywhere-photos figure:first-child,
+  .anywhere-photos figure:last-child {
+    width: auto;
+    flex: 1 1 0;
+    align-self: auto;
+  }
+
+  .anywhere-photos figure:last-child {
+    margin-top: 9%;
+    margin-left: -11%;
   }
 }
 
