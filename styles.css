@@ -911,7 +911,6 @@ blockquote {
   width: 74%;
   align-self: flex-end;
   margin-top: -18%;
-  box-shadow: 0 0 0 0.45rem var(--bg);
 }
 
 .anywhere-photos img {
@@ -924,6 +923,7 @@ blockquote {
   .anywhere-photos {
     flex-direction: row;
     align-items: flex-start;
+    width: 84%;
   }
 
   .anywhere-photos figure:first-child,
