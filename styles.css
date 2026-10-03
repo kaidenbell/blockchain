@@ -885,6 +885,34 @@ blockquote {
   }
 }
 
+/* Anywhere */
+
+.anywhere-photos {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.4rem;
+}
+
+.anywhere-photos figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--card-03);
+}
+
+.anywhere-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .anywhere-photos {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
 /* Close */
 
 .close {
