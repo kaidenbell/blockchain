@@ -525,7 +525,8 @@ blockquote {
     max-width: 16em;
   }
 
-  .hero .stack-title {
+  .hero .stack-title,
+  #products .stack-title {
     line-height: 1.08;
   }
 
