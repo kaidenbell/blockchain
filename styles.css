@@ -797,6 +797,14 @@ blockquote {
 
 /* Yield */
 
+.cash-mark {
+  display: inline-block;
+  width: 0.82em;
+  height: 0.82em;
+  margin-left: 0.28em;
+  vertical-align: -0.08em;
+}
+
 .yield-card {
   display: grid;
   gap: 0.5rem;
