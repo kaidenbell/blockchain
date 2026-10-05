@@ -795,57 +795,67 @@ blockquote {
   }
 }
 
-/* Anywhere */
+/* Yield */
 
-.anywhere-photos {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 2.4rem;
-}
-
-.anywhere-photos figure {
-  margin: 0;
-  overflow: hidden;
+.yield-card {
+  display: grid;
+  gap: 0.5rem;
+  margin: 2.4rem 0 0;
+  padding: 1.6rem 1.4rem 1.1rem;
+  background: var(--card);
   border-radius: var(--radius);
-  background: var(--card-03);
-}
-
-.anywhere-photos figure:first-child {
-  width: 86%;
-}
-
-.anywhere-photos figure:last-child {
   position: relative;
-  z-index: 1;
-  width: 74%;
-  align-self: flex-end;
-  margin-top: -18%;
 }
 
-.anywhere-photos img {
+.yield-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+
+.yield-rate {
+  margin: 0;
+  font-size: clamp(4.5rem, 2rem + 10vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.yield-chart {
   display: block;
   width: 100%;
   height: auto;
 }
 
+.yield-fill {
+  fill: color-mix(in oklab, var(--fg) 7%, transparent);
+}
+
+.yield-line {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.yield-dot {
+  fill: var(--fg);
+}
+
 @media (min-width: 900px) {
-  .anywhere-photos {
-    flex-direction: row;
-    align-items: flex-start;
+  .yield-card {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: end;
+    gap: 2rem;
     width: 84%;
+    padding: 2rem 1.6rem 1.2rem 2.2rem;
   }
 
-  .anywhere-photos figure:first-child,
-  .anywhere-photos figure:last-child {
-    width: auto;
-    flex: 1 1 0;
-    align-self: auto;
-  }
-
-  .anywhere-photos figure:last-child {
-    margin-top: 9%;
-    margin-left: -11%;
+  .yield-rate {
+    padding-bottom: 1.4rem;
   }
 }
 
