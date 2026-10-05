@@ -525,6 +525,10 @@ blockquote {
     max-width: 16em;
   }
 
+  .hero .stack-title {
+    line-height: 1.08;
+  }
+
   .hero-actions {
     margin-top: 1.4rem;
   }
