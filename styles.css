@@ -543,13 +543,6 @@ blockquote {
   .stack {
     font-size: 1.75rem;
   }
-
-  /* Blocks alternate sides. Text inside the block stays left-aligned. */
-  .stack--end {
-    width: fit-content;
-    max-width: min(20em, 100%);
-    margin-left: auto;
-  }
 }
 
 .stage {
@@ -700,8 +693,7 @@ blockquote {
   padding: 4.2rem 0;
 }
 
-.section .stack + .cards,
-.section .stack + .scale {
+.section .stack + .cards {
   margin-top: 3.4rem;
 }
 
@@ -803,91 +795,12 @@ blockquote {
   }
 }
 
-/* Scale */
-
-.scale {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-top: 1px solid var(--border-02);
+.statement + .statement {
+  padding-top: 0;
 }
 
-.scale article {
-  padding: 1.75rem 0 0.25rem;
-}
-
-.scale article + article {
-  margin-top: 1.75rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--border-02);
-}
-
-.scale-stat {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.figure {
-  font-size: clamp(2.5rem, 1rem + 6vw, 4.5rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: var(--track-2xl);
-  font-variant-numeric: tabular-nums;
-}
-
-.coins {
-  width: 2.4rem;
-  height: auto;
-  color: var(--fg);
-  overflow: visible;
-  flex: none;
-}
-
-.coins--lg {
-  width: 2.8rem;
-}
-
-.coin-body {
-  fill: var(--fg);
-}
-
-.coin-face {
-  fill: var(--card-03);
-}
-
-.scale h3 {
-  margin-top: 1.15rem;
-  font-weight: 400;
-}
-
-.scale .sec {
-  margin-top: 0.45rem;
-  max-width: 32ch;
-}
-
-@media (min-width: 800px) {
-  .scale {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .scale article {
-    padding: 2.8rem 2.5rem 0 0;
-  }
-
-  .scale article + article {
-    margin-top: 0;
-    padding: 2.8rem 0 0 2.5rem;
-    border-top: 0;
-    border-left: 1px solid var(--border-02);
-  }
-
-  .coins {
-    width: 2.75rem;
-  }
-
-  .coins--lg {
-    width: 3.25rem;
-  }
+#advantage h2 {
+  max-width: 14em;
 }
 
 /* Anywhere */
