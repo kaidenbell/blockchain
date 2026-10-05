@@ -795,14 +795,6 @@ blockquote {
   }
 }
 
-.statement + .statement {
-  padding-top: 0;
-}
-
-#advantage h2 {
-  max-width: 14em;
-}
-
 /* Anywhere */
 
 .anywhere-photos {
