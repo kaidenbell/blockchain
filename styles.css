@@ -809,19 +809,8 @@ blockquote {
   display: grid;
   gap: 0.5rem;
   margin: 2.4rem 0 0;
-  padding: 1.6rem 1.4rem 1.1rem;
-  background: var(--card);
-  border-radius: var(--radius);
-  position: relative;
-}
-
-.yield-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid var(--border);
-  pointer-events: none;
+  padding: 0;
+  background: none;
 }
 
 .yield-rate {
@@ -845,8 +834,9 @@ blockquote {
 .yield-line {
   fill: none;
   stroke: var(--fg);
-  stroke-width: 1.75;
+  stroke-width: 5.5;
   stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .yield-dot {
@@ -859,7 +849,11 @@ blockquote {
     align-items: end;
     gap: 2rem;
     width: 84%;
-    padding: 2rem 1.6rem 1.2rem 2.2rem;
+    padding: 0;
+  }
+
+  .yield-line {
+    stroke-width: 1.75;
   }
 
   .yield-rate {
