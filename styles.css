@@ -516,6 +516,10 @@ blockquote {
 }
 
 @media (max-width: 899px) {
+  #yield .stack-support {
+    text-wrap: wrap;
+  }
+
   .hero .stack-support,
   .hero-actions .btn--secondary {
     display: none;
@@ -810,21 +814,10 @@ blockquote {
 }
 
 .app-shot {
-  position: relative;
   width: 100%;
-  background: var(--card);
+  background: #fff;
   border-radius: var(--radius);
   overflow: hidden;
-}
-
-.app-shot::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  border: 1px solid var(--border);
-  pointer-events: none;
 }
 
 .app-shot-bar {
@@ -833,7 +826,6 @@ blockquote {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 0.85rem;
-  border-bottom: 1px solid var(--border-02);
 }
 
 .app-shot-asset {
