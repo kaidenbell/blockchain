@@ -516,8 +516,13 @@ blockquote {
 }
 
 @media (max-width: 899px) {
+  #yield .stack {
+    max-width: none;
+  }
+
   #yield .stack-support {
-    text-wrap: wrap;
+    font-size: 1.125rem;
+    text-wrap: nowrap;
   }
 
   .hero .stack-support,
@@ -815,7 +820,7 @@ blockquote {
 
 .app-shot {
   width: 100%;
-  background: #fff;
+  background: var(--card);
   border-radius: var(--radius);
   overflow: hidden;
 }
