@@ -892,13 +892,65 @@ blockquote {
   letter-spacing: -0.015em;
 }
 
+.app-chart {
+  display: block;
+  width: 100%;
+  height: 6.25rem;
+  margin-top: 0.35rem;
+}
+
+.app-chart-rise {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: chart-rise 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.app-chart-fill {
+  fill: rgb(20 148 74 / 16%);
+}
+
+.app-chart-line {
+  fill: none;
+  stroke: #14944a;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+@keyframes chart-rise {
+  0% {
+    transform: translateY(34%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  78% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  92% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
 @media (min-width: 900px) {
   .yield-shot {
     margin-top: 2.5rem;
   }
 
   .app-shot {
-    width: min(100%, 34rem);
+    width: 100%;
     border-radius: 16px;
   }
 
@@ -918,6 +970,10 @@ blockquote {
 
   .app-shot-delta {
     font-size: 1.05rem;
+  }
+
+  .app-chart {
+    height: 9.5rem;
   }
 }
 
