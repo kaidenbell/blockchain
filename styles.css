@@ -810,13 +810,21 @@ blockquote {
 }
 
 .app-shot {
+  position: relative;
   width: 100%;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow:
-    0 0 0 1px rgb(38 37 30 / 8%),
-    0 16px 36px rgb(38 37 30 / 7%);
+  background: var(--card);
+  border-radius: var(--radius);
   overflow: hidden;
+}
+
+.app-shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  border: 1px solid var(--border);
+  pointer-events: none;
 }
 
 .app-shot-bar {
@@ -825,7 +833,7 @@ blockquote {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 0.85rem;
-  border-bottom: 1px solid rgb(38 37 30 / 8%);
+  border-bottom: 1px solid var(--border-02);
 }
 
 .app-shot-asset {
@@ -899,12 +907,6 @@ blockquote {
   margin-top: 0.35rem;
 }
 
-.app-chart-rise {
-  transform-box: fill-box;
-  transform-origin: center bottom;
-  animation: chart-rise 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-}
-
 .app-chart-fill {
   fill: rgb(20 148 74 / 16%);
 }
@@ -918,32 +920,6 @@ blockquote {
   vector-effect: non-scaling-stroke;
 }
 
-@keyframes chart-rise {
-  0% {
-    transform: translateY(34%);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  78% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  92% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-}
-
 @media (min-width: 900px) {
   .yield-shot {
     margin-top: 2.5rem;
@@ -951,7 +927,6 @@ blockquote {
 
   .app-shot {
     width: 100%;
-    border-radius: 16px;
   }
 
   .app-shot-bar,
