@@ -807,8 +807,8 @@ blockquote {
 
 .yield-card {
   display: grid;
-  gap: 0.5rem;
-  margin: 2.4rem 0 0;
+  gap: 1.15rem;
+  margin: 2.6rem 0 0;
   padding: 0;
   background: none;
 }
@@ -825,16 +825,13 @@ blockquote {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.yield-fill {
-  fill: color-mix(in oklab, var(--fg) 7%, transparent);
+  overflow: visible;
 }
 
 .yield-line {
   fill: none;
   stroke: var(--fg);
-  stroke-width: 5.5;
+  stroke-width: 3.25;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -846,18 +843,13 @@ blockquote {
 @media (min-width: 900px) {
   .yield-card {
     grid-template-columns: auto minmax(0, 1fr);
-    align-items: end;
-    gap: 2rem;
-    width: 84%;
-    padding: 0;
+    align-items: center;
+    gap: 2.75rem;
+    width: 100%;
   }
 
   .yield-line {
-    stroke-width: 1.75;
-  }
-
-  .yield-rate {
-    padding-bottom: 1.4rem;
+    stroke-width: 2.25;
   }
 }
 
