@@ -594,7 +594,7 @@ blockquote {
 }
 
 .stats-band {
-  padding: 0.4rem 0 0.2rem;
+  padding: 2.75rem 0 0.6rem;
 }
 
 #products {
@@ -669,6 +669,10 @@ blockquote {
 
   #products {
     padding-bottom: 2rem;
+  }
+
+  .stats-band {
+    padding-top: 3.75rem;
   }
 
   .logo-row {
