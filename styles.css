@@ -646,19 +646,9 @@ blockquote {
 }
 
 .logo-card {
-  position: relative;
   height: 4.35rem;
   background: var(--card);
-  border-radius: 10px;
-}
-
-.logo-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid var(--border-02);
-  pointer-events: none;
+  border-radius: var(--radius);
 }
 
 @media (min-width: 900px) {
@@ -675,7 +665,6 @@ blockquote {
 
   .logo-card {
     height: 5.4rem;
-    border-radius: 12px;
   }
 }
 
