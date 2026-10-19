@@ -418,12 +418,20 @@ blockquote {
 .mobile-nav .mobile-cta {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   margin-top: 1.75rem;
 }
 
-.mobile-nav .btn {
+.mobile-nav .mobile-cta .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  padding: 0.95em 1.45em;
+  border: 1px solid var(--fg);
+  font-size: var(--text-base);
+  letter-spacing: var(--track-base);
+  line-height: 1;
+  text-align: center;
 }
 
 @media (min-width: 900px) {
