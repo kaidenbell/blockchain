@@ -13,8 +13,10 @@ function shareUrl(code) {
   return url.toString();
 }
 
-function xPostUrl(code) {
-  const text = [
+const SHARE_VIDEO_NAME = "Acend Video.mov";
+
+function xPostText(code) {
+  return [
     "A new way to trade is coming to Solana.",
     "",
     "Trade crypto, stocks, and pre-IPOs through one intelligent trading terminal, built for the next generation of finance.",
@@ -22,10 +24,42 @@ function xPostUrl(code) {
     "Get early access to Acend 👇",
     code,
   ].join("\n");
+}
+
+function xPostUrl(code) {
   const url = new URL("https://x.com/intent/tweet");
-  url.searchParams.set("text", text);
+  url.searchParams.set("text", xPostText(code));
   url.searchParams.set("url", shareUrl(code));
   return url.toString();
+}
+
+function canAttachVideo() {
+  if (!navigator.canShare) return false;
+  const probe = new File([""], SHARE_VIDEO_NAME, { type: "video/quicktime" });
+  return navigator.canShare({ files: [probe] });
+}
+
+let shareVideoPromise;
+
+function loadShareVideo() {
+  if (!shareVideoPromise) {
+    shareVideoPromise = fetch(new URL(encodeURI(SHARE_VIDEO_NAME), location.origin))
+      .then((response) => {
+        if (!response.ok) throw new Error("Could not load the video");
+        return response.blob();
+      })
+      .then(
+        (blob) =>
+          new File([blob], SHARE_VIDEO_NAME, {
+            type: blob.type || "video/quicktime",
+          })
+      )
+      .catch((error) => {
+        shareVideoPromise = null;
+        throw error;
+      });
+  }
+  return shareVideoPromise;
 }
 
 function celebrate() {
@@ -147,6 +181,7 @@ function showResult(data) {
   if (hasCode) {
     code.textContent = data.referralCode;
     shareX.href = xPostUrl(data.referralCode);
+    if (canAttachVideo()) loadShareVideo().catch(() => {});
   }
 
   show(result, true);
@@ -188,6 +223,43 @@ form.addEventListener("submit", async (event) => {
     show(errorEl, true);
     button.disabled = false;
     button.textContent = label;
+  }
+});
+
+document.querySelector("#share-x").addEventListener("click", async (event) => {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+  const code = document.querySelector("#result-code").textContent.trim();
+  if (!code || !canAttachVideo()) return;
+
+  event.preventDefault();
+  const shareX = event.currentTarget;
+  if (shareX.classList.contains("is-busy")) return;
+
+  const label = shareX.querySelector(".x-label-text");
+  shareX.classList.add("is-busy");
+  shareX.setAttribute("aria-busy", "true");
+  label.textContent = "Attaching video";
+
+  try {
+    const file = await loadShareVideo();
+    const payload = {
+      files: [file],
+      text: `${xPostText(code)}\n${shareUrl(code)}`,
+      title: "Acend",
+    };
+    if (!navigator.canShare(payload)) {
+      window.open(xPostUrl(code), "_blank", "noopener,noreferrer");
+      return;
+    }
+    await navigator.share(payload);
+  } catch (error) {
+    if (error?.name === "AbortError") return;
+    window.open(xPostUrl(code), "_blank", "noopener,noreferrer");
+  } finally {
+    shareX.classList.remove("is-busy");
+    shareX.removeAttribute("aria-busy");
+    label.textContent = "Post on X";
   }
 });
 
