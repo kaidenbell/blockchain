@@ -1166,22 +1166,6 @@ blockquote {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #cfc8bc;
-  background-image: url("./images/waitlist-bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.waitlist-page .header {
-  background: linear-gradient(to bottom, rgb(247 247 244 / 0.78), rgb(247 247 244 / 0.2));
-}
-
-.waitlist-foot,
-.waitlist-foot .footer-bottom {
-  color: rgb(247 247 244 / 0.88);
-  text-shadow: 0 1px 2px rgb(20 16 12 / 0.45);
 }
 
 .waitlist-main {
@@ -1193,20 +1177,9 @@ blockquote {
 }
 
 .waitlist-panel {
-  position: relative;
-  isolation: isolate;
   width: min(26rem, 100%);
   margin-inline: auto;
   text-align: center;
-}
-
-.waitlist-panel::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -1.75rem -1.15rem -1.5rem;
-  border-radius: 20px;
-  background: rgb(247 247 244 / 0.84);
 }
 
 .waitlist-title {
