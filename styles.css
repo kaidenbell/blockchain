@@ -1178,11 +1178,14 @@ blockquote {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: calc(var(--header-h) + 2.75rem) 0 3.5rem;
 }
 
 .waitlist-panel {
   width: min(26rem, 100%);
+  margin-inline: auto;
+  text-align: center;
 }
 
 .waitlist-title {
@@ -1193,7 +1196,7 @@ blockquote {
 }
 
 .waitlist-lead {
-  margin-top: 0.7rem;
+  margin: 0.7rem auto 0;
   max-width: 28ch;
   color: var(--text-sec);
 }
@@ -1250,6 +1253,7 @@ blockquote {
   color: var(--fg);
   font: inherit;
   letter-spacing: var(--track-base);
+  text-align: center;
 }
 
 .waitlist-field input::placeholder {
@@ -1313,4 +1317,6 @@ blockquote {
 .waitlist-foot .footer-bottom {
   margin-top: 0;
   border-top: 0;
+  text-align: center;
+  align-items: center;
 }
