@@ -1297,21 +1297,22 @@ blockquote {
 #share-x {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  container-type: inline-size;
 }
 
 #share-x::before {
   content: "";
   position: absolute;
   z-index: 2;
-  top: 6px;
-  left: 0;
-  width: 42px;
+  top: 0;
+  left: 22px;
+  right: 22px;
   height: 2px;
-  background: #fff;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent 0%, transparent 35%, #fff 50%, transparent 65%, transparent 100%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
   pointer-events: none;
-  animation: x-line 2.8s linear infinite;
+  animation: x-glare 3s linear infinite;
 }
 
 #share-x .x-label {
@@ -1322,13 +1323,13 @@ blockquote {
   gap: 0.45em;
 }
 
-@keyframes x-line {
+@keyframes x-glare {
   from {
-    transform: translateX(-42px);
+    background-position: 120% 0;
   }
 
   to {
-    transform: translateX(100cqi);
+    background-position: -120% 0;
   }
 }
 
