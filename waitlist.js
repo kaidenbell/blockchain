@@ -7,20 +7,16 @@ const params = new URLSearchParams(location.search);
 const incoming = (params.get("ref") || params.get("referred_by") || "").trim();
 if (incoming) referralInput.value = incoming;
 
+const QUOTE_POST_URL = "https://x.com/AcendFinance/status/2112273015849574811";
+
 function xPostText(code) {
-  return [
-    "A new way to trade is coming to Solana.",
-    "",
-    "Trade crypto, stocks, and pre-IPOs through one intelligent trading terminal, built for the next generation of finance.",
-    "",
-    "Get early access to Acend 👇",
-    code,
-  ].join("\n");
+  return `A new way to trade every market on Solana. Join with my code (${code})`;
 }
 
 function xPostUrl(code) {
   const url = new URL("https://x.com/intent/tweet");
   url.searchParams.set("text", xPostText(code));
+  if (QUOTE_POST_URL) url.searchParams.set("url", QUOTE_POST_URL);
   return url.toString();
 }
 
