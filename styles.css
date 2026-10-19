@@ -1317,15 +1317,13 @@ blockquote {
   content: "";
   position: absolute;
   z-index: 2;
-  top: 0;
-  left: 22px;
-  right: 22px;
+  width: 72px;
   height: 2px;
-  border-radius: 0;
-  background: linear-gradient(90deg, transparent 0%, transparent 35%, #fff 50%, transparent 65%, transparent 100%);
-  background-size: 220% 100%;
-  background-repeat: no-repeat;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #fff 42%, #fff 58%, transparent);
   pointer-events: none;
+  offset-path: inset(1px round 999px);
+  offset-anchor: center;
   animation: x-glare 3s linear infinite;
 }
 
@@ -1338,12 +1336,8 @@ blockquote {
 }
 
 @keyframes x-glare {
-  from {
-    background-position: 120% 0;
-  }
-
   to {
-    background-position: -120% 0;
+    offset-distance: 100%;
   }
 }
 
