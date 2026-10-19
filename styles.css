@@ -1313,10 +1313,52 @@ blockquote {
   color: var(--text-sec);
 }
 
+.waitlist-share .waitlist-code-label {
+  text-align: center;
+}
+
+.waitlist-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
 .waitlist-code {
-  margin-top: 0.35rem;
+  margin: 0;
   font-size: var(--text-md);
   letter-spacing: var(--track-md);
+}
+
+.copy-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--fg);
+}
+
+.copy-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.copy-icon svg[hidden] {
+  display: none;
+}
+
+.copy-icon:hover {
+  background: var(--card-04);
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
 }
 
 .waitlist-foot {

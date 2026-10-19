@@ -13,6 +13,73 @@ function shareUrl(code) {
   return url.toString();
 }
 
+function xPostUrl(code) {
+  const text = [
+    "A new way to trade is coming to Solana.",
+    "",
+    "Trade crypto, stocks, and pre-IPOs through one intelligent trading terminal, built for the next generation of finance.",
+    "",
+    "Get early access to Acend 👇",
+    code,
+  ].join("\n");
+  const url = new URL("https://x.com/intent/tweet");
+  url.searchParams.set("text", text);
+  url.searchParams.set("url", shareUrl(code));
+  return url.toString();
+}
+
+function celebrate() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const canvas = document.createElement("canvas");
+  canvas.className = "confetti";
+  canvas.setAttribute("aria-hidden", "true");
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  resize();
+  const colors = ["#f54e00", "#26251e", "#e6e5e0", "#f2f1ed", "#3b3a33"];
+  const pieces = Array.from({ length: 96 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: -24 - Math.random() * 220,
+    w: 6 + Math.random() * 6,
+    h: 8 + Math.random() * 8,
+    vy: 2.2 + Math.random() * 3.2,
+    vx: -1.5 + Math.random() * 3,
+    rot: Math.random() * Math.PI,
+    vr: -0.18 + Math.random() * 0.36,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+  const start = performance.now();
+
+  function tick(now) {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    pieces.forEach((piece) => {
+      piece.x += piece.vx;
+      piece.y += piece.vy;
+      piece.rot += piece.vr;
+      ctx.save();
+      ctx.translate(piece.x, piece.y);
+      ctx.rotate(piece.rot);
+      ctx.fillStyle = piece.color;
+      ctx.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+      ctx.restore();
+    });
+    if (now - start < 2600) requestAnimationFrame(tick);
+    else canvas.remove();
+  }
+
+  requestAnimationFrame(tick);
+}
+
 function show(el, on) {
   el.hidden = !on;
 }
@@ -26,7 +93,7 @@ function showResult(data) {
   const points = document.querySelector("#result-points");
   const share = document.querySelector("#result-share");
   const code = document.querySelector("#result-code");
-  const link = document.querySelector("#result-link");
+  const shareX = document.querySelector("#share-x");
 
   if (data.pending) {
     title.textContent = "Check your email";
@@ -53,10 +120,11 @@ function showResult(data) {
   show(share, Boolean(hasCode));
   if (hasCode) {
     code.textContent = data.referralCode;
-    link.value = shareUrl(data.referralCode);
+    shareX.href = xPostUrl(data.referralCode);
   }
 
   show(result, true);
+  if (!data.pending) celebrate();
   title.focus();
 }
 
@@ -97,19 +165,27 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-document.querySelector("#copy-link").addEventListener("click", async () => {
-  const link = document.querySelector("#result-link");
-  const button = document.querySelector("#copy-link");
+document.querySelector("#copy-code").addEventListener("click", async () => {
+  const code = document.querySelector("#result-code").textContent.trim();
+  const button = document.querySelector("#copy-code");
+  const copyIcon = button.querySelector(".copy-icon-copy");
+  const checkIcon = button.querySelector(".copy-icon-check");
   try {
-    await navigator.clipboard.writeText(link.value);
+    await navigator.clipboard.writeText(code);
   } catch {
-    link.focus();
-    link.select();
+    const field = document.createElement("textarea");
+    field.value = code;
+    document.body.appendChild(field);
+    field.select();
     document.execCommand("copy");
+    field.remove();
   }
-  const label = button.textContent;
-  button.textContent = "Copied";
+  button.setAttribute("aria-label", "Copied");
+  copyIcon.hidden = true;
+  checkIcon.hidden = false;
   window.setTimeout(() => {
-    button.textContent = label;
+    button.setAttribute("aria-label", "Copy referral code");
+    copyIcon.hidden = false;
+    checkIcon.hidden = true;
   }, 1600);
 });
