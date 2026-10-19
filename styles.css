@@ -1294,6 +1294,40 @@ blockquote {
   cursor: progress;
 }
 
+#share-x {
+  position: relative;
+  isolation: isolate;
+}
+
+#share-x::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 64px;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #fff 46%, #fff 54%, transparent);
+  box-shadow: 0 0 12px 2px rgb(255 255 255 / 0.85);
+  pointer-events: none;
+  offset-path: inset(0 round 999px);
+  offset-anchor: center;
+  animation: x-glare 2.2s linear infinite;
+}
+
+#share-x .x-label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+@keyframes x-glare {
+  to {
+    offset-distance: 100%;
+  }
+}
+
 .waitlist-error {
   color: var(--accent);
   font-size: var(--text-sm);
