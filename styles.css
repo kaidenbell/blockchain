@@ -1243,6 +1243,7 @@ blockquote {
 .waitlist-share[hidden],
 .waitlist-place[hidden],
 .waitlist-points[hidden],
+.waitlist-rewards[hidden],
 .waitlist-error[hidden],
 #waitlist-intro[hidden] {
   display: none;
@@ -1352,11 +1353,25 @@ blockquote {
   letter-spacing: var(--track-sm);
 }
 
-.waitlist-place {
+.waitlist-stats {
   margin-top: 1.6rem;
 }
 
-.waitlist-place span {
+.waitlist-stats:not(:has(p:not([hidden]))) {
+  display: none;
+}
+
+.waitlist-place,
+.waitlist-points {
+  margin: 0;
+}
+
+.waitlist-points {
+  margin-top: 1.35rem;
+}
+
+.waitlist-place span,
+.waitlist-points span {
   display: block;
   margin-bottom: 0.35rem;
   color: var(--text-sec);
@@ -1365,7 +1380,8 @@ blockquote {
   letter-spacing: var(--track-sm);
 }
 
-.waitlist-place strong {
+.waitlist-place strong,
+.waitlist-points strong {
   display: block;
   font-size: clamp(3rem, 2rem + 4vw, 4.25rem);
   font-weight: 400;
@@ -1373,9 +1389,40 @@ blockquote {
   letter-spacing: var(--track-2xl);
 }
 
-.waitlist-points {
-  margin-top: 0.85rem;
+@media (min-width: 900px) {
+  .waitlist-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4.5rem;
+  }
+
+  .waitlist-points {
+    margin-top: 0;
+  }
+}
+
+.waitlist-rewards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 1.35rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
   color: var(--text-sec);
+  font-size: var(--text-sm);
+  letter-spacing: var(--track-sm);
+}
+
+.waitlist-rewards strong {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+@media (min-width: 900px) {
+  .waitlist-rewards {
+    flex-wrap: nowrap;
+  }
 }
 
 .waitlist-share .waitlist-code-label {

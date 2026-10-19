@@ -106,6 +106,8 @@ function showResult(data) {
   const place = document.querySelector("#result-place");
   const placeValue = document.querySelector("#result-place-value");
   const points = document.querySelector("#result-points");
+  const pointsValue = document.querySelector("#result-points-value");
+  const rewards = document.querySelector("#result-rewards");
   const share = document.querySelector("#result-share");
   const code = document.querySelector("#result-code");
   const shareX = document.querySelector("#share-x");
@@ -137,9 +139,10 @@ function showResult(data) {
 
   const hasPoints = !data.pending && Number.isFinite(data.points) && data.points > 0;
   show(points, hasPoints);
-  if (hasPoints) points.textContent = `${data.points.toLocaleString("en-US")} points`;
+  if (hasPoints) pointsValue.textContent = data.points.toLocaleString("en-US");
 
   const hasCode = !data.pending && data.referralCode;
+  show(rewards, Boolean(hasCode));
   show(share, Boolean(hasCode));
   if (hasCode) {
     code.textContent = data.referralCode;

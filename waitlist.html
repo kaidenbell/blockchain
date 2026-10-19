@@ -102,11 +102,21 @@
           <section class="waitlist-result" id="waitlist-result" hidden aria-live="polite">
             <h2 class="waitlist-title" id="result-title" tabindex="-1">You're on the list</h2>
             <p class="waitlist-lead" id="result-note"></p>
-            <p class="waitlist-place" id="result-place" hidden>
-              <span>Your place</span>
-              <strong id="result-place-value"></strong>
-            </p>
-            <p class="waitlist-points" id="result-points" hidden></p>
+            <div class="waitlist-stats">
+              <p class="waitlist-place" id="result-place" hidden>
+                <span>Your place</span>
+                <strong id="result-place-value"></strong>
+              </p>
+              <p class="waitlist-points" id="result-points" hidden>
+                <span>Your points</span>
+                <strong id="result-points-value"></strong>
+              </p>
+            </div>
+            <ul class="waitlist-rewards" id="result-rewards" hidden>
+              <li><strong>50</strong> for joining</li>
+              <li><strong>30</strong> per referral</li>
+              <li><strong>20</strong> per follow</li>
+            </ul>
             <div class="waitlist-share" id="result-share" hidden>
               <p class="waitlist-code-label">Your code</p>
               <div class="waitlist-code-row">
