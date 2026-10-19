@@ -84,6 +84,21 @@ function show(el, on) {
   el.hidden = !on;
 }
 
+function setNote(note, text) {
+  const breakAt = " code ";
+  const index = text.indexOf(breakAt);
+  note.replaceChildren();
+  if (index === -1) {
+    note.textContent = text;
+    return;
+  }
+  note.append(text.slice(0, index + breakAt.length));
+  const lineBreak = document.createElement("br");
+  lineBreak.className = "note-break";
+  note.append(lineBreak);
+  note.append(text.slice(index + breakAt.length));
+}
+
 function showResult(data) {
   show(document.querySelector("#waitlist-intro"), false);
   const title = document.querySelector("#result-title");
@@ -97,17 +112,23 @@ function showResult(data) {
 
   if (data.pending) {
     title.textContent = "Check your email";
-    note.textContent = "Confirm the message we sent and your place will show up here";
+    setNote(note, "Confirm the message we sent and your place will show up here");
   } else if (data.isNew) {
     title.textContent = "You're on the list";
-    note.textContent = data.referralCode
-      ? "The first seats are limited. Pass your code on and you move up."
-      : "The first seats are limited. We'll email you when one opens.";
+    setNote(
+      note,
+      data.referralCode
+        ? "The first seats are limited. Pass your code on and you move up."
+        : "The first seats are limited. We'll email you when one opens."
+    );
   } else {
     title.textContent = "You're already on the list";
-    note.textContent = data.referralCode
-      ? "The first seats are limited. Pass your code on and you move up."
-      : "The first seats are limited. This is the place tied to that email.";
+    setNote(
+      note,
+      data.referralCode
+        ? "The first seats are limited. Pass your code on and you move up."
+        : "The first seats are limited. This is the place tied to that email."
+    );
   }
 
   const hasPlace = !data.pending && Number.isFinite(data.position);

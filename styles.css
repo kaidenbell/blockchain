@@ -1204,6 +1204,12 @@ blockquote {
   }
 }
 
+@media (min-width: 900px) {
+  .note-break {
+    display: none;
+  }
+}
+
 .waitlist-form,
 .waitlist-share {
   display: grid;
