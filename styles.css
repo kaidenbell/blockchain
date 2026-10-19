@@ -1197,6 +1197,13 @@ blockquote {
   text-wrap: balance;
 }
 
+@media (max-width: 899px) {
+  #result-note {
+    max-width: none;
+    text-wrap: wrap;
+  }
+}
+
 .waitlist-form,
 .waitlist-share {
   display: grid;
