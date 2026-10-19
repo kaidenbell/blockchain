@@ -1,7 +1,6 @@
 const form = document.querySelector("#waitlist-form");
 const result = document.querySelector("#waitlist-result");
 const errorEl = document.querySelector("#waitlist-error");
-const countEl = document.querySelector("#waitlist-count");
 const referralInput = document.querySelector("#referral");
 
 const params = new URLSearchParams(location.search);
@@ -16,19 +15,6 @@ function shareUrl(code) {
 
 function show(el, on) {
   el.hidden = !on;
-}
-
-async function loadStats() {
-  try {
-    const response = await fetch("/api/waitlist");
-    if (!response.ok) return;
-    const data = await response.json();
-    if (!data.ok || !Number.isFinite(data.subscribers) || data.subscribers < 1) return;
-    countEl.textContent = `${Number(data.subscribers).toLocaleString("en-US")} people waiting`;
-    show(countEl, true);
-  } catch {
-    /* the form still works without the count */
-  }
 }
 
 function showResult(data) {
@@ -127,5 +113,3 @@ document.querySelector("#copy-link").addEventListener("click", async () => {
     button.textContent = label;
   }, 1600);
 });
-
-loadStats();
