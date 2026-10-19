@@ -1335,12 +1335,6 @@ blockquote {
   gap: 0.45em;
 }
 
-#share-x.is-busy {
-  opacity: 0.55;
-  pointer-events: none;
-  cursor: progress;
-}
-
 @keyframes x-glare {
   to {
     offset-distance: 100%;
