@@ -1201,12 +1201,14 @@ blockquote {
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: var(--track-lg);
+  text-wrap: balance;
 }
 
 .waitlist-lead {
-  margin: 0.7rem auto 0;
-  max-width: 28ch;
+  margin: 0.85rem auto 0;
+  max-width: 24em;
   color: var(--text-sec);
+  text-wrap: balance;
 }
 
 .waitlist-count {
@@ -1258,6 +1260,7 @@ blockquote {
   color: var(--text-sec);
   font-size: var(--text-sm);
   letter-spacing: var(--track-sm);
+  text-align: left;
 }
 
 .waitlist-field em {
