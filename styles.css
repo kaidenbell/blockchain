@@ -1165,3 +1165,152 @@ blockquote {
 .beta-panel .btn {
   margin-top: 1.5rem;
 }
+
+/* Waitlist */
+
+.waitlist-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.waitlist-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 2.75rem) 0 3.5rem;
+}
+
+.waitlist-panel {
+  width: min(26rem, 100%);
+}
+
+.waitlist-title {
+  font-size: clamp(2rem, 1.2rem + 2.2vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: var(--track-lg);
+}
+
+.waitlist-lead {
+  margin-top: 0.7rem;
+  max-width: 28ch;
+  color: var(--text-sec);
+}
+
+.waitlist-count {
+  margin-top: 0.85rem;
+  color: var(--text-sec);
+  font-size: var(--text-sm);
+  letter-spacing: var(--track-sm);
+}
+
+.waitlist-form,
+.waitlist-share {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+}
+
+.waitlist-form[hidden],
+.waitlist-result[hidden],
+.waitlist-share[hidden],
+.waitlist-count[hidden],
+.waitlist-place[hidden],
+.waitlist-points[hidden],
+.waitlist-error[hidden],
+#waitlist-intro[hidden] {
+  display: none;
+}
+
+.waitlist-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.waitlist-field span,
+.waitlist-code-label {
+  color: var(--text-sec);
+  font-size: var(--text-sm);
+  letter-spacing: var(--track-sm);
+}
+
+.waitlist-field em {
+  font-style: normal;
+  color: var(--text-ter);
+}
+
+.waitlist-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--fg);
+  font: inherit;
+  letter-spacing: var(--track-base);
+}
+
+.waitlist-field input::placeholder {
+  color: var(--text-ter);
+}
+
+.waitlist-form .btn,
+.waitlist-share .btn {
+  width: 100%;
+  margin-top: 0.15rem;
+}
+
+.waitlist-form .btn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.waitlist-error {
+  color: var(--accent);
+  font-size: var(--text-sm);
+  letter-spacing: var(--track-sm);
+}
+
+.waitlist-place {
+  margin-top: 1.6rem;
+}
+
+.waitlist-place span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--text-sec);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: var(--track-sm);
+}
+
+.waitlist-place strong {
+  display: block;
+  font-size: clamp(3rem, 2rem + 4vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: var(--track-2xl);
+}
+
+.waitlist-points {
+  margin-top: 0.85rem;
+  color: var(--text-sec);
+}
+
+.waitlist-code {
+  margin-top: 0.35rem;
+  font-size: var(--text-md);
+  letter-spacing: var(--track-md);
+}
+
+.waitlist-foot {
+  background: transparent;
+  padding: 0 0 1.5rem;
+}
+
+.waitlist-foot .footer-bottom {
+  margin-top: 0;
+  border-top: 0;
+}
