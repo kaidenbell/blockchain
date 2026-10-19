@@ -567,7 +567,7 @@ blockquote {
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--card-03);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1504 / 1084;
 }
 
 .stage::after {
@@ -579,26 +579,12 @@ blockquote {
   pointer-events: none;
 }
 
-.stage picture,
 .stage img {
+  display: block;
   width: 100%;
   height: 100%;
-}
-
-.stage picture {
-  display: block;
-}
-
-.stage img {
   object-fit: cover;
   object-position: center;
-}
-
-@media (min-width: 900px) {
-  .stage {
-    width: 100%;
-    aspect-ratio: 1504 / 1084;
-  }
 }
 
 .stats-band {
