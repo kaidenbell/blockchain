@@ -1346,12 +1346,29 @@ blockquote {
   height: 16px;
 }
 
-.copy-icon svg[hidden] {
+.copy-icon .copy-icon-check {
   display: none;
+}
+
+.copy-icon.is-copied {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.copy-icon.is-copied .copy-icon-copy {
+  display: none;
+}
+
+.copy-icon.is-copied .copy-icon-check {
+  display: block;
 }
 
 .copy-icon:hover {
   background: var(--card-04);
+}
+
+.copy-icon.is-copied:hover {
+  background: var(--fg);
 }
 
 .confetti {

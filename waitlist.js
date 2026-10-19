@@ -101,11 +101,13 @@ function showResult(data) {
   } else if (data.isNew) {
     title.textContent = "You're on the list";
     note.textContent = data.referralCode
-      ? "Share your code and you move up when someone joins with it"
-      : "We'll email you when a spot opens";
+      ? "The first seats are limited. Pass your code on and you move up."
+      : "The first seats are limited. We'll email you when one opens.";
   } else {
     title.textContent = "You're already on the list";
-    note.textContent = "This is the place tied to that email";
+    note.textContent = data.referralCode
+      ? "The first seats are limited. Pass your code on and you move up."
+      : "The first seats are limited. This is the place tied to that email.";
   }
 
   const hasPlace = !data.pending && Number.isFinite(data.position);
@@ -168,8 +170,6 @@ form.addEventListener("submit", async (event) => {
 document.querySelector("#copy-code").addEventListener("click", async () => {
   const code = document.querySelector("#result-code").textContent.trim();
   const button = document.querySelector("#copy-code");
-  const copyIcon = button.querySelector(".copy-icon-copy");
-  const checkIcon = button.querySelector(".copy-icon-check");
   try {
     await navigator.clipboard.writeText(code);
   } catch {
@@ -180,12 +180,10 @@ document.querySelector("#copy-code").addEventListener("click", async () => {
     document.execCommand("copy");
     field.remove();
   }
+  button.classList.add("is-copied");
   button.setAttribute("aria-label", "Copied");
-  copyIcon.hidden = true;
-  checkIcon.hidden = false;
   window.setTimeout(() => {
+    button.classList.remove("is-copied");
     button.setAttribute("aria-label", "Copy referral code");
-    copyIcon.hidden = false;
-    checkIcon.hidden = true;
   }, 1600);
 });
