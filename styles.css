@@ -1190,6 +1190,17 @@ blockquote {
   text-wrap: balance;
 }
 
+@media (min-width: 900px) {
+  .waitlist-panel {
+    width: min(34rem, 100%);
+  }
+
+  .waitlist-title {
+    white-space: nowrap;
+    text-wrap: nowrap;
+  }
+}
+
 .waitlist-lead {
   margin: 0.85rem auto 0;
   max-width: 24em;
@@ -1220,8 +1231,10 @@ blockquote {
 @media (min-width: 900px) {
   .waitlist-form,
   .waitlist-share {
+    width: 26rem;
     gap: 1.15rem;
     margin-top: 1.85rem;
+    margin-inline: auto;
   }
 }
 
