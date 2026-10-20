@@ -62,16 +62,6 @@ if (mind) {
   let height = 0;
   let running = false;
 
-  function rand(seed) {
-    let value = seed;
-    return function next() {
-      value = (value + 0x6d2b79f5) | 0;
-      let t = Math.imul(value ^ (value >>> 15), 1 | value);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
   const thoughts = [];
 
   function layout() {
@@ -83,42 +73,57 @@ if (mind) {
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     dots.length = 0;
     thoughts.length = 0;
-    const random = rand(11);
-    const count = Math.round(width / (width < 700 ? 14 : 11));
-    for (let i = 0; i < count; i += 1) {
-      dots.push({
-        x: random() * width,
-        lane: (random() - 0.5) * height * 0.72,
-        speed: 16 + random() * 26,
-        phase: random() * Math.PI * 2,
-        r: random() < 0.14 ? 2.3 + random() * 1.6 : 0.7 + random() * 1.3,
-        a: 0.16 + random() * 0.28,
-      });
+    const gap = width < 700 ? 20 : 16;
+    for (let band = 0; band < 3; band += 1) {
+      for (let x = -gap; x < width + gap; x += gap) {
+        dots.push({
+          band,
+          x,
+          speed: 18 + band * 7,
+          phase: band * 2.05,
+          offset: (band - 1) * Math.min(30, height * 0.2),
+        });
+      }
     }
   }
 
   function place(dot, now) {
     const t = now / 1000;
-    const x = ((dot.x + dot.speed * t) % (width + 48)) - 24;
+    const x = ((dot.x + dot.speed * t) % (width + 36)) - 18;
     const y =
       height * 0.5 +
-      Math.sin(x * 0.011 + t * 0.45 + dot.phase) * Math.min(18, height * 0.12) +
-      dot.lane * 0.42;
+      dot.offset +
+      Math.sin((x / Math.max(width, 1)) * Math.PI * 2 * 1.2 + t * 0.65 + dot.phase) * Math.min(13, height * 0.08);
     return { x, y };
   }
 
   function spawn(now) {
-    for (let n = 0; n < 28; n += 1) {
-      const a = Math.floor(Math.random() * dots.length);
-      const b = Math.floor(Math.random() * dots.length);
-      if (a === b) continue;
-      if (thoughts.some((thought) => thought.a === a || thought.b === a || thought.a === b || thought.b === b)) continue;
+    const order = dots.map((_, index) => index);
+    for (let i = order.length - 1; i > 0; i -= 1) {
+      const swap = Math.floor(Math.random() * (i + 1));
+      const hold = order[i];
+      order[i] = order[swap];
+      order[swap] = hold;
+    }
+    for (let n = 0; n < order.length; n += 1) {
+      const a = order[n];
+      if (thoughts.some((thought) => thought.a === a || thought.b === a)) continue;
       const pa = place(dots[a], now);
-      const pb = place(dots[b], now);
-      const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
-      if (dist < 26 || dist > 120) continue;
-      thoughts.push({ a, b, born: now, life: 1100 + Math.random() * 800 });
-      return;
+      let best = -1;
+      let bestDist = 40;
+      for (let b = 0; b < dots.length; b += 1) {
+        if (b === a || dots[b].band !== dots[a].band) continue;
+        if (thoughts.some((thought) => thought.a === b || thought.b === b)) continue;
+        const pb = place(dots[b], now);
+        const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
+        if (dist < 12 || dist >= bestDist || Math.abs(pa.y - pb.y) > 16) continue;
+        bestDist = dist;
+        best = b;
+      }
+      if (best !== -1) {
+        thoughts.push({ a, b: best, born: now, life: 1000 + Math.random() * 700 });
+        return;
+      }
     }
   }
 
@@ -130,16 +135,16 @@ if (mind) {
     for (let i = thoughts.length - 1; i >= 0; i -= 1) {
       if (clock - thoughts[i].born >= thoughts[i].life) thoughts.splice(i, 1);
     }
-    if (!reduce) {
-      if (thoughts.length === 0) spawn(clock);
-      else if (thoughts.length === 1 && clock - thoughts[0].born > thoughts[0].life * 0.45 && Math.random() < 0.012) spawn(clock);
-    } else if (thoughts.length === 0) {
+    const goal = reduce ? 3 : 4;
+    while (thoughts.length < goal) {
+      const before = thoughts.length;
       spawn(clock);
+      if (thoughts.length === before) break;
     }
 
     ctx.lineWidth = 1;
     ctx.lineCap = "round";
-    thoughts.slice(0, 2).forEach((thought) => {
+    thoughts.forEach((thought) => {
       const age = (clock - thought.born) / thought.life;
       const fade = Math.sin(Math.min(1, Math.max(0, age)) * Math.PI);
       const from = points[thought.a];
@@ -154,8 +159,8 @@ if (mind) {
     points.forEach((point, i) => {
       const linked = thoughts.some((thought) => thought.a === i || thought.b === i);
       ctx.beginPath();
-      ctx.fillStyle = `rgba(90, 89, 82, ${linked ? Math.min(0.78, dots[i].a + 0.28) : dots[i].a})`;
-      ctx.arc(point.x, point.y, dots[i].r, 0, Math.PI * 2);
+      ctx.fillStyle = linked ? "rgba(70, 69, 64, 0.72)" : "rgba(120, 119, 112, 0.42)";
+      ctx.arc(point.x, point.y, 1.7, 0, Math.PI * 2);
       ctx.fill();
     });
 
