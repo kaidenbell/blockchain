@@ -562,7 +562,7 @@ blockquote {
 }
 
 .mind {
-  height: 156px;
+  height: 176px;
   margin: 0 0 1.25rem;
 }
 
@@ -574,7 +574,7 @@ blockquote {
 
 @media (max-width: 899px) {
   .mind {
-    height: 112px;
+    height: 132px;
   }
 }
 
