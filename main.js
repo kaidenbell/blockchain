@@ -72,6 +72,8 @@ if (mind) {
     };
   }
 
+  const thoughts = [];
+
   function layout() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
     width = mind.clientWidth;
@@ -80,74 +82,82 @@ if (mind) {
     mind.height = Math.max(1, Math.floor(height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     dots.length = 0;
+    thoughts.length = 0;
     const random = rand(11);
-    const gap = width < 700 ? 16 : 13;
-    for (let x = -24; x < width + 24; x += gap) {
-      const count = 2 + Math.floor(random() * 2);
-      for (let i = 0; i < count; i += 1) {
-        dots.push({
-          x: x + (random() - 0.5) * gap * 0.85,
-          jitter: (random() - 0.5) * 26,
-          r: random() < 0.14 ? 2.4 + random() * 1.7 : 0.65 + random() * 1.35,
-          a: 0.14 + random() * 0.3,
-        });
-      }
+    const count = Math.round(width / (width < 700 ? 14 : 11));
+    for (let i = 0; i < count; i += 1) {
+      dots.push({
+        x: random() * width,
+        lane: (random() - 0.5) * height * 0.72,
+        speed: 16 + random() * 26,
+        phase: random() * Math.PI * 2,
+        r: random() < 0.14 ? 2.3 + random() * 1.6 : 0.7 + random() * 1.3,
+        a: 0.16 + random() * 0.28,
+      });
     }
-    dots.sort((a, b) => a.x - b.x);
   }
 
-  function wave(dot, time) {
-    const u = dot.x / Math.max(width, 1);
-    const amp = Math.min(22, height * 0.15);
-    return (
-      height * 0.54 +
-      Math.sin(u * Math.PI * 2 * 1.05 + time) * amp +
-      Math.sin(u * Math.PI * 2 * 2.15 - time * 0.62) * amp * 0.26 +
-      dot.jitter * (0.62 + 0.38 * Math.sin(time * 0.45 + u * 8))
-    );
+  function place(dot, now) {
+    const t = now / 1000;
+    const x = ((dot.x + dot.speed * t) % (width + 48)) - 24;
+    const y =
+      height * 0.5 +
+      Math.sin(x * 0.011 + t * 0.45 + dot.phase) * Math.min(18, height * 0.12) +
+      dot.lane * 0.42;
+    return { x, y };
+  }
+
+  function spawn(now) {
+    for (let n = 0; n < 28; n += 1) {
+      const a = Math.floor(Math.random() * dots.length);
+      const b = Math.floor(Math.random() * dots.length);
+      if (a === b) continue;
+      if (thoughts.some((thought) => thought.a === a || thought.b === a || thought.a === b || thought.b === b)) continue;
+      const pa = place(dots[a], now);
+      const pb = place(dots[b], now);
+      const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
+      if (dist < 26 || dist > 120) continue;
+      thoughts.push({ a, b, born: now, life: 1100 + Math.random() * 800 });
+      return;
+    }
   }
 
   function draw(now) {
-    const time = reduce ? 0.8 : now * 0.00028;
+    const clock = reduce ? 1400 : now;
     ctx.clearRect(0, 0, width, height);
-    const ys = dots.map((dot) => wave(dot, time));
-    const span = width + 180;
-    const focus = reduce ? width * 0.42 : ((now * 0.000085) * span) % span - 90;
-    const links = [];
+    const points = dots.map((dot) => place(dot, clock));
 
-    for (let i = 0; i < dots.length; i += 1) {
-      const near = Math.abs(dots[i].x - focus);
-      if (near > 86) continue;
-      let best = -1;
-      let bestDist = 34;
-      for (let j = i + 1; j < dots.length && dots[j].x - dots[i].x < 40; j += 1) {
-        const dist = Math.hypot(dots[j].x - dots[i].x, ys[j] - ys[i]);
-        if (dist < bestDist) {
-          bestDist = dist;
-          best = j;
-        }
-      }
-      if (best !== -1) links.push({ i, j: best, strength: 1 - near / 86 });
+    for (let i = thoughts.length - 1; i >= 0; i -= 1) {
+      if (clock - thoughts[i].born >= thoughts[i].life) thoughts.splice(i, 1);
+    }
+    if (!reduce) {
+      if (thoughts.length === 0) spawn(clock);
+      else if (thoughts.length === 1 && clock - thoughts[0].born > thoughts[0].life * 0.45 && Math.random() < 0.012) spawn(clock);
+    } else if (thoughts.length === 0) {
+      spawn(clock);
     }
 
     ctx.lineWidth = 1;
     ctx.lineCap = "round";
-    links.forEach((link) => {
-      ctx.strokeStyle = `rgba(38, 37, 30, ${0.22 * link.strength})`;
+    thoughts.slice(0, 2).forEach((thought) => {
+      const age = (clock - thought.born) / thought.life;
+      const fade = Math.sin(Math.min(1, Math.max(0, age)) * Math.PI);
+      const from = points[thought.a];
+      const to = points[thought.b];
+      ctx.strokeStyle = `rgba(38, 37, 30, ${0.42 * fade})`;
       ctx.beginPath();
-      ctx.moveTo(dots[link.i].x, ys[link.i]);
-      ctx.lineTo(dots[link.j].x, ys[link.j]);
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
       ctx.stroke();
     });
 
-    for (let i = 0; i < dots.length; i += 1) {
-      const near = Math.abs(dots[i].x - focus);
-      const hot = near < 86 ? 1 - near / 86 : 0;
+    points.forEach((point, i) => {
+      const linked = thoughts.some((thought) => thought.a === i || thought.b === i);
       ctx.beginPath();
-      ctx.fillStyle = `rgba(90, 89, 82, ${Math.min(0.7, dots[i].a + hot * 0.22)})`;
-      ctx.arc(dots[i].x, ys[i], dots[i].r + hot * 0.35, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(90, 89, 82, ${linked ? Math.min(0.78, dots[i].a + 0.28) : dots[i].a})`;
+      ctx.arc(point.x, point.y, dots[i].r, 0, Math.PI * 2);
       ctx.fill();
-    }
+    });
 
     if (running) requestAnimationFrame(draw);
   }

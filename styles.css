@@ -562,8 +562,8 @@ blockquote {
 }
 
 .mind {
-  height: 148px;
-  margin: 0.35rem 0 0;
+  height: 156px;
+  margin: 0 0 1.25rem;
 }
 
 .mind canvas {
@@ -580,7 +580,7 @@ blockquote {
 
 .stage {
   position: relative;
-  margin: 0.4rem 0 0;
+  margin: 2.4rem 0 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--card-03);
@@ -1024,7 +1024,7 @@ blockquote {
 /* Close */
 
 .close {
-  padding: 5.6rem 0 6.5rem;
+  padding: 5.6rem 0 1.75rem;
   text-align: center;
 }
 
@@ -1045,7 +1045,7 @@ blockquote {
 
 @media (min-width: 900px) {
   .close {
-    padding: 7rem 0 8rem;
+    padding: 7rem 0 2rem;
   }
 }
 
