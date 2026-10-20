@@ -133,15 +133,9 @@ if (mind) {
 
     points.forEach((point, i) => {
       const fade = glow.get(i) || 0;
-      if (fade > 0) {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(38, 37, 30, ${0.16 * fade})`;
-        ctx.arc(point.x, point.y, 7, 0, Math.PI * 2);
-        ctx.fill();
-      }
       ctx.beginPath();
       ctx.fillStyle = fade > 0 ? `rgba(38, 37, 30, ${0.35 + 0.6 * fade})` : "rgba(120, 119, 112, 0.42)";
-      ctx.arc(point.x, point.y, 1.7 + fade * 0.6, 0, Math.PI * 2);
+      ctx.arc(point.x, point.y, 1.7, 0, Math.PI * 2);
       ctx.fill();
     });
 
