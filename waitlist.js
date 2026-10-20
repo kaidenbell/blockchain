@@ -38,7 +38,7 @@ function celebrate() {
   }
 
   resize();
-  const colors = ["#f54e00", "#26251e", "#e6e5e0", "#f2f1ed", "#3b3a33"];
+  const colors = ["#f54e00", "#101011", "#e6e5e0", "#f2f1ed", "#2a2a2c"];
   const pieces = Array.from({ length: 96 }, () => ({
     x: Math.random() * window.innerWidth,
     y: -24 - Math.random() * 220,
