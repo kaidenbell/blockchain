@@ -117,7 +117,7 @@ if (globe) {
   function drawGlobe(now) {
     const rot = reduceGlobe ? 0.55 : now * 0.00032;
     gctx.clearRect(0, 0, gw, gh);
-    const radius = Math.min(gw, gh) * 0.36;
+    const radius = Math.min(gw, gh) * 0.4;
     const cx = gw / 2;
     const cy = gh / 2;
     const cos = Math.cos(rot);
@@ -132,14 +132,11 @@ if (globe) {
     view.forEach((dot) => {
       const edge = Math.abs(dot.z) < 0.16;
       if (!edge && !(dot.land && dot.z > 0.02)) return;
-      const depth = (dot.z + 1) / 2;
       const px = cx + (dot.x / (1.55 - dot.z * 0.28)) * radius;
       const py = cy - (dot.y / (1.55 - dot.z * 0.28)) * radius;
       gctx.beginPath();
-      gctx.fillStyle = dot.land
-        ? `rgba(16, 16, 17, ${0.45 + depth * 0.5})`
-        : `rgba(16, 16, 17, ${0.28 + depth * 0.2})`;
-      gctx.arc(px, py, dot.land ? 2.05 : 1.25, 0, Math.PI * 2);
+      gctx.fillStyle = "rgba(16, 16, 17, 0.8)";
+      gctx.arc(px, py, dot.land ? 1.15 : 0.85, 0, Math.PI * 2);
       gctx.fill();
     });
 
@@ -152,8 +149,8 @@ if (globe) {
       const px = cx + (ox / 1.55) * radius;
       const py = cy - (oz * 0.22) * radius + radius * 0.72;
       gctx.beginPath();
-      gctx.fillStyle = "rgba(16, 16, 17, 0.38)";
-      gctx.arc(px, py + Math.sin(angle) * radius * 0.08, 1.15, 0, Math.PI * 2);
+      gctx.fillStyle = "rgba(16, 16, 17, 0.8)";
+      gctx.arc(px, py + Math.sin(angle) * radius * 0.08, 0.8, 0, Math.PI * 2);
       gctx.fill();
     }
 
