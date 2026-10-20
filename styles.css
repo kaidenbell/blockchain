@@ -688,6 +688,10 @@ blockquote {
   z-index: 3;
 }
 
+.marks img:nth-child(4) {
+  z-index: 4;
+}
+
 .globe-park {
   padding: 0.4rem 0 0.2rem;
 }
