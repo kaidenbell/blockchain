@@ -657,7 +657,7 @@ blockquote {
 
 .globe {
   display: block;
-  width: min(240px, 68vw);
+  width: min(340px, 88vw);
   height: auto;
   aspect-ratio: 1;
   margin: 1.35rem auto 0.15rem;
@@ -682,7 +682,7 @@ blockquote {
   }
 
   .globe {
-    width: 280px;
+    width: 440px;
     margin-top: 1.6rem;
   }
 }
