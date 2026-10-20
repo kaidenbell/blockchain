@@ -98,33 +98,16 @@ if (mind) {
   }
 
   function spawn(now) {
-    const order = dots.map((_, index) => index);
-    for (let i = order.length - 1; i > 0; i -= 1) {
-      const swap = Math.floor(Math.random() * (i + 1));
-      const hold = order[i];
-      order[i] = order[swap];
-      order[swap] = hold;
+    const open = [];
+    for (let i = 0; i < dots.length; i += 1) {
+      if (!thoughts.some((thought) => thought.index === i)) open.push(i);
     }
-    for (let n = 0; n < order.length; n += 1) {
-      const a = order[n];
-      if (thoughts.some((thought) => thought.a === a || thought.b === a)) continue;
-      const pa = place(dots[a], now);
-      let best = -1;
-      let bestDist = 40;
-      for (let b = 0; b < dots.length; b += 1) {
-        if (b === a || dots[b].band !== dots[a].band) continue;
-        if (thoughts.some((thought) => thought.a === b || thought.b === b)) continue;
-        const pb = place(dots[b], now);
-        const dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
-        if (dist < 12 || dist >= bestDist || Math.abs(pa.y - pb.y) > 16) continue;
-        bestDist = dist;
-        best = b;
-      }
-      if (best !== -1) {
-        thoughts.push({ a, b: best, born: now, life: 1000 + Math.random() * 700 });
-        return;
-      }
-    }
+    if (!open.length) return;
+    thoughts.push({
+      index: open[Math.floor(Math.random() * open.length)],
+      born: now,
+      life: 900 + Math.random() * 800,
+    });
   }
 
   function draw(now) {
@@ -135,32 +118,30 @@ if (mind) {
     for (let i = thoughts.length - 1; i >= 0; i -= 1) {
       if (clock - thoughts[i].born >= thoughts[i].life) thoughts.splice(i, 1);
     }
-    const goal = reduce ? 3 : 4;
+    const goal = reduce ? 4 : 6;
     while (thoughts.length < goal) {
       const before = thoughts.length;
       spawn(clock);
       if (thoughts.length === before) break;
     }
 
-    ctx.lineWidth = 1;
-    ctx.lineCap = "round";
+    const glow = new Map();
     thoughts.forEach((thought) => {
       const age = (clock - thought.born) / thought.life;
-      const fade = Math.sin(Math.min(1, Math.max(0, age)) * Math.PI);
-      const from = points[thought.a];
-      const to = points[thought.b];
-      ctx.strokeStyle = `rgba(38, 37, 30, ${0.42 * fade})`;
-      ctx.beginPath();
-      ctx.moveTo(from.x, from.y);
-      ctx.lineTo(to.x, to.y);
-      ctx.stroke();
+      glow.set(thought.index, Math.sin(Math.min(1, Math.max(0, age)) * Math.PI));
     });
 
     points.forEach((point, i) => {
-      const linked = thoughts.some((thought) => thought.a === i || thought.b === i);
+      const fade = glow.get(i) || 0;
+      if (fade > 0) {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(38, 37, 30, ${0.16 * fade})`;
+        ctx.arc(point.x, point.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.beginPath();
-      ctx.fillStyle = linked ? "rgba(70, 69, 64, 0.72)" : "rgba(120, 119, 112, 0.42)";
-      ctx.arc(point.x, point.y, 1.7, 0, Math.PI * 2);
+      ctx.fillStyle = fade > 0 ? `rgba(38, 37, 30, ${0.35 + 0.6 * fade})` : "rgba(120, 119, 112, 0.42)";
+      ctx.arc(point.x, point.y, 1.7 + fade * 0.6, 0, Math.PI * 2);
       ctx.fill();
     });
 
