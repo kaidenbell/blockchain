@@ -561,9 +561,26 @@ blockquote {
   }
 }
 
+.mind {
+  height: 148px;
+  margin: 0.35rem 0 0;
+}
+
+.mind canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 899px) {
+  .mind {
+    height: 112px;
+  }
+}
+
 .stage {
   position: relative;
-  margin: 2.4rem 0 0;
+  margin: 0.4rem 0 0;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--card-03);
