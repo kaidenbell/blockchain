@@ -53,6 +53,135 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const globe = document.querySelector("#globe");
+if (globe) {
+  const gctx = globe.getContext("2d");
+  const reduceGlobe = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const globeDots = [];
+  let gw = 0;
+  let gh = 0;
+  let globeRunning = false;
+
+  function onLand(lat, lon) {
+    const box = (west, east, south, north) => lon >= west && lon <= east && lat >= south && lat <= north;
+    if (box(-18, 52, -35, 37)) {
+      if (lat > 28 && lon < -6) return false;
+      if (lat < -28 && lon < 14) return false;
+      if (lat > 18 && lon > 40) return false;
+      return true;
+    }
+    if (box(-11, 40, 36, 71)) return !(lat > 62 && lon < 4);
+    if (box(40, 145, 8, 74)) {
+      if (lat < 16 && lon > 108) return false;
+      if (lat > 58 && lon < 62) return false;
+      return true;
+    }
+    if (box(113, 154, -44, -11)) return true;
+    if (box(-168, -53, 14, 72)) {
+      if (lat < 26 && lon > -90) return false;
+      if (lon < -140 && lat < 52) return false;
+      return true;
+    }
+    if (box(-82, -34, -56, 13)) {
+      if (lat > 8 && lon < -72) return false;
+      if (lat < -42 && lon > -62) return false;
+      return true;
+    }
+    return false;
+  }
+
+  function buildGlobe() {
+    globeDots.length = 0;
+    const count = 820;
+    for (let i = 0; i < count; i += 1) {
+      const y = 1 - (i / (count - 1)) * 2;
+      const ring = Math.sqrt(Math.max(0, 1 - y * y));
+      const theta = Math.PI * (3 - Math.sqrt(5)) * i;
+      const x = Math.cos(theta) * ring;
+      const z = Math.sin(theta) * ring;
+      const lat = Math.asin(y) * (180 / Math.PI);
+      const lon = Math.atan2(z, x) * (180 / Math.PI);
+      globeDots.push({ x, y, z, land: onLand(lat, lon) });
+    }
+  }
+
+  function layoutGlobe() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    gw = globe.clientWidth;
+    gh = globe.clientHeight;
+    globe.width = Math.max(1, Math.floor(gw * ratio));
+    globe.height = Math.max(1, Math.floor(gh * ratio));
+    gctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  }
+
+  function drawGlobe(now) {
+    const rot = reduceGlobe ? 0.55 : now * 0.00032;
+    gctx.clearRect(0, 0, gw, gh);
+    const radius = Math.min(gw, gh) * 0.36;
+    const cx = gw / 2;
+    const cy = gh / 2;
+    const cos = Math.cos(rot);
+    const sin = Math.sin(rot);
+    const view = globeDots.map((dot) => {
+      const x = dot.x * cos + dot.z * sin;
+      const z = -dot.x * sin + dot.z * cos;
+      return { x, y: dot.y, z, land: dot.land };
+    });
+    view.sort((a, b) => a.z - b.z);
+
+    view.forEach((dot) => {
+      const edge = Math.abs(dot.z) < 0.16;
+      if (!edge && !(dot.land && dot.z > 0.02)) return;
+      const depth = (dot.z + 1) / 2;
+      const px = cx + (dot.x / (1.55 - dot.z * 0.28)) * radius;
+      const py = cy - (dot.y / (1.55 - dot.z * 0.28)) * radius;
+      gctx.beginPath();
+      gctx.fillStyle = dot.land
+        ? `rgba(16, 16, 17, ${0.45 + depth * 0.5})`
+        : `rgba(16, 16, 17, ${0.28 + depth * 0.2})`;
+      gctx.arc(px, py, dot.land ? 2.05 : 1.25, 0, Math.PI * 2);
+      gctx.fill();
+    });
+
+    for (let i = 0; i < 34; i += 1) {
+      const angle = rot * 0.65 + (i / 34) * Math.PI * 2;
+      const sweep = ((angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      if (sweep > 1.7 && sweep < 4.3) continue;
+      const ox = Math.cos(angle) * 1.16;
+      const oz = Math.sin(angle) * 1.16;
+      const px = cx + (ox / 1.55) * radius;
+      const py = cy - (oz * 0.22) * radius + radius * 0.72;
+      gctx.beginPath();
+      gctx.fillStyle = "rgba(16, 16, 17, 0.38)";
+      gctx.arc(px, py + Math.sin(angle) * radius * 0.08, 1.15, 0, Math.PI * 2);
+      gctx.fill();
+    }
+
+    if (globeRunning) requestAnimationFrame(drawGlobe);
+  }
+
+  buildGlobe();
+  layoutGlobe();
+  window.addEventListener("resize", () => {
+    layoutGlobe();
+    if (reduceGlobe) drawGlobe(0);
+  });
+  if (reduceGlobe) {
+    drawGlobe(0);
+  } else {
+    const watch = new IntersectionObserver((entries) => {
+      const visible = entries.some((entry) => entry.isIntersecting);
+      if (visible && !globeRunning) {
+        globeRunning = true;
+        requestAnimationFrame(drawGlobe);
+      } else if (!visible) {
+        globeRunning = false;
+      }
+    });
+    watch.observe(globe);
+  }
+}
+
 const mind = document.querySelector("#mind");
 if (mind) {
   const ctx = mind.getContext("2d");
