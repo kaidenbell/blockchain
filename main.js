@@ -117,7 +117,7 @@ if (globe) {
   function drawGlobe(now) {
     const rot = reduceGlobe ? 0.55 : now * 0.00032;
     gctx.clearRect(0, 0, gw, gh);
-    const radius = Math.min(gw, gh) * 0.4;
+    const radius = Math.min(gw, gh) * 0.44;
     const cx = gw / 2;
     const cy = gh / 2;
     const cos = Math.cos(rot);
@@ -139,20 +139,6 @@ if (globe) {
       gctx.arc(px, py, dot.land ? 1.15 : 0.85, 0, Math.PI * 2);
       gctx.fill();
     });
-
-    for (let i = 0; i < 34; i += 1) {
-      const angle = rot * 0.65 + (i / 34) * Math.PI * 2;
-      const sweep = ((angle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-      if (sweep > 1.7 && sweep < 4.3) continue;
-      const ox = Math.cos(angle) * 1.16;
-      const oz = Math.sin(angle) * 1.16;
-      const px = cx + (ox / 1.55) * radius;
-      const py = cy - (oz * 0.22) * radius + radius * 0.72;
-      gctx.beginPath();
-      gctx.fillStyle = "rgba(16, 16, 17, 0.8)";
-      gctx.arc(px, py + Math.sin(angle) * radius * 0.08, 0.8, 0, Math.PI * 2);
-      gctx.fill();
-    }
 
     if (globeRunning) requestAnimationFrame(drawGlobe);
   }
